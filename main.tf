@@ -36,18 +36,7 @@ resource "aws_route_table_association" "route-table-association" {
   route_table_id = "${aws_route_table.route-table.id}"
 }
 
-
-# resource "aws_security_group" "allow_ssh" {
-#     name = "allow_ssh"
-#     ingress {
-#         from_port = "22"
-#         to_port = "22"
-#         protocol = "tcp"
-#     }
-#     vpc_id = "${aws_vpc.vpc.id}"
-# }
-
-# resource "aws_security_group" "allow_tls" {
-
-  
-# }
+data "aws_subnet_ids" "vpc-subnet-ids" {
+  vpc_id = "${aws_vpc.vpc.id}"
+  depends_on = ["aws_subnet.backend-subnet"]
+}
