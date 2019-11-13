@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "all_subnet_ids" {
-  value = concat((aws_subnet.backend-subnet.*.id),(aws_subnet.frontend-subnet.*.id))
+  value = concat((aws_subnet.backend-subnet.*.id), (aws_subnet.frontend-subnet.*.id))
 }
 
 output "backend_subnet_ids" {
