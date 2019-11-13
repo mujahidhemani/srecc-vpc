@@ -68,11 +68,6 @@ resource "aws_route_table_association" "frontend-route-table-association" {
   route_table_id = "${aws_route_table.frontend-route-table.id}"
 }
 
-data "aws_subnet_ids" "vpc-subnet-ids" {
-  vpc_id     = "${aws_vpc.vpc.id}"
-  depends_on = ["aws_subnet.backend-subnet"]
-}
-
 resource "aws_nat_gateway" "nat-gw" {
   count = 3
   allocation_id = "${element(aws_eip.nat-gw-eip.*.id, count.index)}"
